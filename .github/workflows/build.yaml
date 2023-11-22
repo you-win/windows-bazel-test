@@ -1,0 +1,39 @@
+---
+name: Build
+on:
+  workflow_dispatch:
+
+jobs:
+  build-gdmp:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+          ref: ${{ inputs.ref }}
+
+      - name: Install deps Windows
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: choco install opencv --version 3.4.10
+
+      - name: Install deps Ubuntu
+        if: matrix.os == 'ubuntu-latest'
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install libopencv-core-dev libopencv-highgui-dev libopencv-calib3d-dev libopencv-features2d-dev libopencv-imgproc-dev libopencv-video-dev ffmpeg libegl1-mesa-dev
+
+      - name: Check dirs Windows
+        if: matrix.os == 'windows-latest'
+        shell: bash
+        run: |
+          ls -la /c/Program\ Files\ \(x86\)
+          ls -la /c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio
+          ls -la /c/Program\ Files
+          ls -la /c/Program\ Files/Microsoft\ Visual\ Studio
