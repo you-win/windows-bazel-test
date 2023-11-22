@@ -33,7 +33,13 @@ jobs:
         if: matrix.os == 'windows-latest'
         shell: bash
         run: |
+          echo "program files (x86)"
           ls -la /c/Program\ Files\ \(x86\)
+          echo "program files (x86)/microsoft visual studio"
           ls -la /c/Program\ Files\ \(x86\)/Microsoft\ Visual\ Studio
+          echo "program files"
           ls -la /c/Program\ Files
+          echo "program files/microsoft visual studio"
           ls -la /c/Program\ Files/Microsoft\ Visual\ Studio
+          echo "program files/microsoft visual studio/2022"
+          ls -la /c/Program\ Files/Microsoft\ Visual\ Studio/2022
