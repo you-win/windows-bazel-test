@@ -44,3 +44,5 @@ jobs:
           ls -la /c/Program\ Files/Microsoft\ Visual\ Studio
           echo "program files/microsoft visual studio/2022"
           ls -la /c/Program\ Files/Microsoft\ Visual\ Studio/2022
+          echo "program files/microsoft visual studio/2022/Enterprise"
+          ls -la /c/Program\ Files/Microsoft\ Visual\ Studio/2022/Enterprise
